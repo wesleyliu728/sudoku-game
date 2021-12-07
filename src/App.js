@@ -31,7 +31,7 @@ class Gameboard extends React.Component{
       notes:Array(81).fill().map(() => Array(9).fill(null)),
       isStatic: Array(81).fill(false),
       isMarking:true,
-      currSquare:null,
+      currSquare:0,
       isNoting:false,
     };
   }
@@ -51,7 +51,7 @@ class Gameboard extends React.Component{
           })
       } else{
           const currNotes = this.state.notes.slice()
-          const a = currNotes[this.state.currSquare].slice()
+          const a = (currNotes[this.state.currSquare]).slice()
           a[val-1] = val
           currNotes[this.state.currSquare] = a
           this.setState({
@@ -110,7 +110,7 @@ class Gameboard extends React.Component{
       board:v[0],
       isStatic:v[1],
       markings:Array(81).fill(null),
-      notes:Array(81).fill(null),
+      notes:Array(81).fill().map(() => Array(9).fill(null)),
     })
   }
   genImportant(val){
@@ -149,7 +149,8 @@ class Gameboard extends React.Component{
       list2.push(x)
     }
     return( 
-      list2.map((m) => {return(
+      <div className = "App">
+      {list2.map((m) => {return(
           <div className = "board-row">
             {list2.map((n) => {return(
               <div className = "threebythree">
@@ -166,7 +167,8 @@ class Gameboard extends React.Component{
             )})}
           </div>
         )}
-      )
+      )}
+      </div>
     )
   }
   generateRandomBoard(){
@@ -183,7 +185,7 @@ class Gameboard extends React.Component{
   }
   render(){
     return(
-      <div>
+      <div className = "App">
         <div>
           {this.generateBoard()}
         </div>
@@ -214,7 +216,11 @@ class Gameboard extends React.Component{
 
 function App() {
   return (
-    <Gameboard></Gameboard>
+    <div className = "wrap">
+      <div className = "App">
+        <Gameboard></Gameboard>
+      </div>
+    </div>
   );
 }
 
