@@ -14,7 +14,7 @@ class Square extends React.Component{
   }
   render(){
     return(
-      <button className = "square" onClick = {this.props.handleClick} style = {{color:(this.props.value == null ? "blue": "black"), background:(this.props.isImportant ? "grey":"white"), borderColor:(this.props.isSelect ? 'blue':'black')}}>
+      <button className = "square" onClick = {this.props.handleClick} style = {{color:(this.props.value == null ? "#3C93C9": "#1C5475"), background:(this.props.isImportant ? "#D5EBF8":"white"), borderColor:(this.props.isSelect ? '#45A1D9':'#527F9C'), borderWidth:(this.props.isSelect ? 3.5:2)}}>
         {this.props.value}
         {this.props.marking}
       </button>
@@ -149,9 +149,9 @@ class Gameboard extends React.Component{
       list2.push(x)
     }
     return( 
-      <div className = "App">
+      <div>
       {list2.map((m) => {return(
-          <div className = "board-row">
+          <div>
             {list2.map((n) => {return(
               <div className = "threebythree">
                 {list2.map((o) => {return(
@@ -185,19 +185,23 @@ class Gameboard extends React.Component{
   }
   render(){
     return(
-      <div className = "App">
-        <div>
+      <div> 
+        <div className = "gameboard" style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
           {this.generateBoard()}
         </div>
-        <div>
-          <button className = "button-4" onClick = {() => this.handleMarkingsClick(0)} style = {{background:(this.state.isMarking ? 'cyan':'white')}}>
+        <div className = "buttons">
+          <button className = "button-4" onClick = {() => this.handleMarkingsClick(0)} style = {{background:(this.state.isMarking ? "#84CDFA":'white')}}>
             Mark
           </button>
-          <button className = "button-4" onClick = {() => this.handleMarkingsClick(1)} style = {{background:(this.state.isErasing ? 'cyan':'white')}}>
-            Erase
-          </button>
-          <button className = "button-4" onClick = {() => this.handleMarkingsClick(2)} style = {{background:(this.state.isNoting ? 'cyan':'white')}}>
+          <button className = "button-4" onClick = {() => this.handleMarkingsClick(2)} style = {{background:(this.state.isNoting ? "#84CDFA":'white')}}>
             Note
+          </button>
+          <button className = "button-4" onClick = {() => this.handleMarkingsClick(1)}>
+            Erase
           </button>
         </div>
         <div>

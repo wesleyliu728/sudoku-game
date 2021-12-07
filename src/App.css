@@ -1,23 +1,28 @@
 .wrap {
-  background: grey;
-  height:800px;
+  background:#C2E5FB;
+  height:1000px;
   width:100%;
 }
 .App {
+  position:absolute;
+  width:100%;
+  margin-top: 50px;
   text-align: center;
-  background: grey;
+  background: #C2E5FB;
 }
 
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
 }
-ol, ul {
-  padding-left: 30px;
-}
+
 .threebythree{
-  border:1px solid black;
+  vertical-align: top;
+  border:1px solid #56809B;
   display:inline-block;
   
+}
+.buttons{
+  margin-top:20px;
 }
 .float-child {
   float: left;
@@ -29,9 +34,6 @@ ol, ul {
   display: table;
 }
 
-.status {
-  margin-bottom: 10px;
-}
 .img {
   width:34px; 
   height:34px; 
@@ -47,7 +49,6 @@ ol, ul {
   line-height: 60px;
   height: 60px;
   margin-right: 0px;
-  margin-top: 0px;
   padding: 0;
   text-align: center;
   width: 60px;
@@ -73,9 +74,7 @@ button:active{
 }
 
 
-.gameboard{
-  margin-top: 10px;
-}
+
 
 
 
