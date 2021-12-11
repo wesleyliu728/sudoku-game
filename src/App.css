@@ -40,7 +40,23 @@ body {
   background-size: 100%; /* To fill the dimensions of container (button), or */
   background-size: 25px auto; /* to specify dimensions explicitly */
 }
+
+.notes{
+  left:0px;
+  top:0px;
+  word-wrap: break-word;
+  opacity:60%;
+  text-align: left;
+  font: 14px "Century Gothic", Futura, sans-serif;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  position:absolute;
+  width: 60px;
+  height: 60px;
+}
 .square {
+  position:relative;
+  z-index: 100;
   background: #fff;
   border: 0.3px solid #6B6B6B;
   float: left;

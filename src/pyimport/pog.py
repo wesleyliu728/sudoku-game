@@ -1,8 +1,6 @@
 #Sudoku Generator Algorithm - www.101computing.net/sudoku-generator-algorithm/
-import turtle
 from random import randint, shuffle
-from time import sleep
-
+import csv
 #initialise empty 9 by 9 grid
 grid = []
 grid.append([0, 0, 0, 0, 0, 0, 0, 0, 0])
@@ -124,48 +122,68 @@ def fillGrid(grid):
                 if fillGrid(grid):
                   return True
       break
-  grid[row][col]=0             
-    
-#Generate a Fully Solved Grid
-fillGrid(grid)
+  grid[row][col]=0    
+r = 10
+a = []
+c = grid
+print(grid)
+print(c)
+for x in range(r):
+  grid = []
+  grid.append([0, 0, 0, 0, 0, 0, 0, 0, 0])
+  grid.append([0, 0, 0, 0, 0, 0, 0, 0, 0])
+  grid.append([0, 0, 0, 0, 0, 0, 0, 0, 0])
+  grid.append([0, 0, 0, 0, 0, 0, 0, 0, 0])
+  grid.append([0, 0, 0, 0, 0, 0, 0, 0, 0])
+  grid.append([0, 0, 0, 0, 0, 0, 0, 0, 0])
+  grid.append([0, 0, 0, 0, 0, 0, 0, 0, 0])
+  grid.append([0, 0, 0, 0, 0, 0, 0, 0, 0])
+  grid.append([0, 0, 0, 0, 0, 0, 0, 0, 0])
+  #Generate a Fully Solved Grid
+  fillGrid(grid)
 
 
-#Start Removing Numbers one by one
+  #Start Removing Numbers one by one
 
-#A higher number of attempts will end up removing more numbers from the grid
-#Potentially resulting in more difficiult grids to solve!
-attempts = 5 
-counter=1
-while attempts>0:
-  #Select a random cell that is not already empty
-  row = randint(0,8)
-  col = randint(0,8)
-  while grid[row][col]==0:
+  #A higher number of attempts will end up removing more numbers from the grid
+  #Potentially resulting in more difficiult grids to solve!
+  attempts = 5 
+  counter=1
+  while attempts>0:
+    #Select a random cell that is not already empty
     row = randint(0,8)
     col = randint(0,8)
-  #Remember its cell value in case we need to put it back  
-  backup = grid[row][col]
-  grid[row][col]=0
-  
-  #Take a full copy of the grid
-  copyGrid = []
-  for r in range(0,9):
-     copyGrid.append([])
-     for c in range(0,9):
-        copyGrid[r].append(grid[r][c])
-  
-  #Count the number of solutions that this grid has (using a backtracking approach implemented in the solveGrid() function)
-  counter=0      
-  solveGrid(copyGrid)   
-  #If the number of solution is different from 1 then we need to cancel the change by putting the value we took away back in the grid
-  if counter!=1:
-    grid[row][col]=backup
-    #We could stop here, but we can also have another attempt with a different cell just to try to remove more numbers
-    attempts -= 1
-for line in grid:
-    print(line)
-arr = []
-for line in grid:
-    arr += line
-print(arr)
-print("Sudoku Grid Ready")
+    while grid[row][col]==0:
+      row = randint(0,8)
+      col = randint(0,8)
+    #Remember its cell value in case we need to put it back  
+    backup = grid[row][col]
+    grid[row][col]=0
+    
+    #Take a full copy of the grid
+    copyGrid = []
+    for r in range(0,9):
+      copyGrid.append([])
+      for c in range(0,9):
+          copyGrid[r].append(grid[r][c])
+    
+    #Count the number of solutions that this grid has (using a backtracking approach implemented in the solveGrid() function)
+    counter=0      
+    solveGrid(copyGrid)   
+    #If the number of solution is different from 1 then we need to cancel the change by putting the value we took away back in the grid
+    if counter!=1:
+      grid[row][col]=backup
+      #We could stop here, but we can also have another attempt with a different cell just to try to remove more numbers
+      attempts -= 1
+  for line in grid:
+      print(line)
+  arr = []
+  for line in grid:
+      arr += line
+  a.append(arr)
+  print(str(x/r * 100) + '% done')
+with open ('sudoku_problems.csv', 'w') as file:
+  wr = csv.writer(file, delimiter=',', lineterminator='\n')
+  for arr in a:
+    wr.writerow(arr)
+    print(str((x+1)/r * 100) + '% done')
